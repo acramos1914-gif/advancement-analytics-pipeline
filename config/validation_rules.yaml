@@ -1,0 +1,90 @@
+# Validation Rules
+#
+# Business rules applied to the ingested donor/gift dataset by src/validate.py.
+# Each rule is evaluated independently and reported on regardless of whether
+# earlier rules failed, so a single run surfaces the full data-quality picture
+# rather than stopping at the first problem.
+#
+# Fields:
+#   id         - stable machine-readable identifier
+#   description- plain-English statement of the rule
+#   type       - required_field | format | range | uniqueness | referential
+#   column     - column(s) the rule applies to
+#   severity   - critical | warning | info
+#                critical: would make a KPI materially wrong if unaddressed
+#                warning:  data hygiene issue, unlikely to skew KPIs much
+#                info:     informational / worth noting to stewards
+
+rules:
+  - id: required_donor_id
+    description: "donor_id must be present on every record."
+    type: required_field
+    column: donor_id
+    severity: critical
+
+  - id: required_gift_amount
+    description: "gift_amount must be present on every record."
+    type: required_field
+    column: gift_amount
+    severity: critical
+
+  - id: required_gift_date
+    description: "gift_date must be present on every record."
+    type: required_field
+    column: gift_date
+    severity: critical
+
+  - id: valid_email_format
+    description: "email, when present, must match a standard email pattern."
+    type: format
+    column: email
+    pattern: '^[^@\s]+@[^@\s]+\.[^@\s]+$'
+    severity: warning
+
+  - id: non_negative_gift_amount
+    description: "gift_amount must not be negative."
+    type: range
+    column: gift_amount
+    min: 0
+    max: null
+    severity: critical
+
+  - id: reasonable_gift_amount
+    description: "gift_amount above $1,000,000 is flagged for manual review as a likely data entry error."
+    type: range
+    column: gift_amount
+    min: null
+    max: 1000000
+    severity: warning
+
+  - id: valid_class_year_range
+    description: "class_year, when present, must fall between 1950 and the current year + 6 (incoming students)."
+    type: range
+    column: class_year
+    min: 1950
+    max_offset_from_current_year: 6
+    severity: warning
+
+  - id: duplicate_donor_id
+    description: "donor_id should be unique in the donor dimension; duplicate donor records can double-count participation."
+    type: uniqueness
+    column: donor_id
+    severity: critical
+
+  - id: valid_gift_date_not_future
+    description: "gift_date must not be in the future."
+    type: format
+    column: gift_date
+    severity: critical
+
+  - id: required_constituent_type
+    description: "constituent_type must be present to support alumni participation rate calculations."
+    type: required_field
+    column: constituent_type
+    severity: warning
+
+  - id: valid_fund_designation
+    description: "fund_designation must be present and non-empty for gift attribution reporting."
+    type: required_field
+    column: fund_designation
+    severity: warning

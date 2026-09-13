@@ -1,0 +1,19 @@
+gift_id,donor_id,first_name,last_name,email,phone,constituent_type,class_year,capacity_tier,city,state,gift_date,gift_amount,fund_designation
+G1,D001,Alice,Smith,alice.smith@example.edu,,Alumni,2010,Medium,Atlanta,GA,2024-08-01,100.00,Annual Fund
+G2,D001,Alice,Smith,alice.smith@example.edu,,Alumni,2010,Medium,Atlanta,GA,2025-08-01,150.00,Annual Fund
+G3,D001,Alice,Smith,alice.smith@example.edu,,Alumni,2010,Medium,Atlanta,GA,2026-08-01,200.00,Annual Fund
+G4,D002,Bob,Jones,bob.jones@example.edu,,Alumni,2015,Low,Macon,GA,2025-09-01,300.00,Scholarship Fund
+G5,D003,Carol,Lee,carol.lee@example.edu,,Friend,,Low,Savannah,GA,2023-08-01,50.00,Unrestricted
+G6,D004,Dan,Kim,dan.kim@example.edu,,Alumni,2022,High,Columbus,GA,2026-08-15,500.00,Capital Campaign
+G7,D005,Eve,Park,eve.park@example.edu,,Parent,,Medium,Albany,GA,2025-10-01,1000.00,Annual Fund
+G8,,Frank,Doe,frank.doe@example.edu,,Friend,,Low,Macon,GA,2020-08-01,60.00,Annual Fund
+G9,D006,Grace,Hall,grace.hall@example.edu,,Alumni,2010,Low,Macon,GA,2020-08-01,,Annual Fund
+G10,D007,Henry,Young,,,Friend,,Medium,Macon,GA,,40.00,Annual Fund
+G11,D002,BOB,jones,bob.jones@example.edu,,Alumni,2015,Low,Macon,GA,2019-08-01,300.00,Scholarship Fund
+G12,D003,Carol,Lee,carol.lee@example.edu,,Friend,1800,Low,Savannah,GA,2019-08-01,20.00,Unrestricted
+G13,D002,Bob,Jones,bob.jones@example.edu,,Alumni,2015,Low,Macon,GA,2099-01-01,75.00,Annual Fund
+G14,D005,Eve,Park,eve.park@example.edu,,Parent,,Medium,Albany,GA,2020-01-01,2000000.00,Annual Fund
+G15,D001,Alice,Smith,alice.smith_example.edu,,Alumni,2010,Medium,Atlanta,GA,2019-08-01,80.00,Annual Fund
+G16,D003,Carol,Lee,carol.lee@example.edu,,Friend,,Low,Savannah,GA,2019-08-01,15.00,
+G17,D002,Bob,Jones,bob.jones@example.edu,,Alumni,2015,Low,Macon,GA,2019-08-01,-50.00,Annual Fund
+G18,D008,Ivy,Chen,ivy.chen@example.edu,,,,Low,Macon,GA,2019-08-01,25.00,Annual Fund

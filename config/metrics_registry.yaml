@@ -1,0 +1,96 @@
+# Metrics Registry
+#
+# Versioned, governed definitions of every KPI the pipeline computes.
+# This file is the single source of truth for "what does this number mean."
+# Analysts and stakeholders can read this file without touching code to
+# understand exactly how a metric is derived, when it was introduced, and
+# what changed between versions.
+#
+# Each entry:
+#   id             - stable machine-readable identifier, matches metrics_engine.py
+#   name           - human-readable display name
+#   version        - semantic version of the metric definition itself
+#   effective_date - date this version of the definition took effect
+#   formula        - plain-English description of the calculation
+#   notes          - caveats, exclusions, intended audience
+
+metrics:
+  - id: lybunt
+    name: "LYBUNT (Last Year But Unfortunately Not This)"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      Count of unique donors who made at least one gift in the prior fiscal
+      year but have made zero gifts in the current fiscal year.
+    notes: >
+      Standard advancement-sector lapsed-donor metric. Used to target
+      re-engagement and stewardship campaigns. Fiscal year runs Jul 1 - Jun 30.
+
+  - id: sybunt
+    name: "SYBUNT (Some Year But Unfortunately Not This)"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      Count of unique donors who made at least one gift in any of the prior
+      three fiscal years but have made zero gifts in the current fiscal year.
+    notes: >
+      Broader lapsed-donor pool than LYBUNT; captures donors who give
+      intermittently rather than annually.
+
+  - id: donor_retention_rate
+    name: "Donor Retention Rate"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      (Number of donors who gave in both the current fiscal year and the
+      prior fiscal year) / (Number of donors who gave in the prior fiscal
+      year), expressed as a percentage.
+    notes: >
+      Core fundraising health metric. Industry benchmark for higher-ed
+      advancement programs is typically 40-60%.
+
+  - id: alumni_participation_rate
+    name: "Alumni Giving Participation Rate"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      (Number of unique alumni donors who made at least one gift in the
+      current fiscal year) / (Total number of alumni of record), expressed
+      as a percentage.
+    notes: >
+      Widely reported externally (e.g. to ranking bodies and boards).
+      "Alumni of record" is derived from constituent_type = "Alumni".
+
+  - id: average_gift
+    name: "Average Gift Amount"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      Sum of all gift amounts in the current fiscal year divided by the
+      count of gifts in the current fiscal year.
+    notes: >
+      Calculated at the gift level, not the donor level, so donors with
+      multiple gifts are not double-weighted in the denominator.
+
+  - id: yoy_giving_change
+    name: "Year-over-Year Giving Change"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      (Total gift amount in the current fiscal year - Total gift amount in
+      the prior fiscal year) / Total gift amount in the prior fiscal year,
+      expressed as a percentage.
+    notes: >
+      Positive values indicate growth. Sensitive to single large/mega gifts;
+      should be read alongside donor_retention_rate for context.
+
+  - id: new_donor_acquisition
+    name: "New Donor Acquisition"
+    version: "1.0.0"
+    effective_date: "2024-01-01"
+    formula: >
+      Count of unique donors whose earliest gift on record falls within the
+      current fiscal year (i.e. first-time donors this year).
+    notes: >
+      Does not distinguish between newly matriculated alumni and long-time
+      constituents giving for the first time; both count as "new."

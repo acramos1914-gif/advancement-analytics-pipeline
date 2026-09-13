@@ -1,0 +1,8 @@
+pandas>=2.2
+PyYAML>=6.0
+Faker>=24.0
+tableauhyperapi>=0.0.19000
+openpyxl>=3.1
+reportlab>=4.1
+pytest>=8.0
+click>=8.1
